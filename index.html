@@ -15,20 +15,20 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    /* antique gold / brown — sampled from the UN-MARKD brochure */
+    
     --cream:      #F7F2E9;
     --cream-alt:  #EDE3D3;
     --peach:      #E8DAC3;
     --white:      #FFFDFA;
 
-    --clay:       #B0813F;   /* brochure gold, deepened */
+    --clay:       #B0813F;   
     --clay-deep:  #8A6229;
     --clay-soft:  #D8AE73;
 
     --ink:        #2A1E0E;
     --ink-soft:   #5C4A33;
     --ink-mute:   #8A7860;
-    --espresso:   #382813;   /* brochure brown */
+    --espresso:   #382813;
     --espresso-2: #241906;
 
     --line:       rgba(138,98,41,0.30);
@@ -57,7 +57,7 @@
 
   /* ── NAV ── */
   nav {
-    --nav-h: 104px;                 /* tall on load, shrinks on scroll */
+    --nav-h: 104px;                 
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
     padding: 0 var(--gutter);
@@ -312,7 +312,7 @@
     font-weight: 400;
   }
 
-  /* ── SERVICES (what we coat) ── */
+  /* Services */
   #services {
     background: var(--cream);
     padding: 0;
@@ -993,7 +993,7 @@
     margin-bottom: 34px;
   }
 
-  /* quote form (dark panel) */
+  /* quote form */
   .quote-form { display: grid; gap: 16px; }
 
   .qf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -1166,7 +1166,7 @@
     .services-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
-  /* seven nav items no longer fit alongside the logo below this width */
+  
   @media (max-width: 1090px) {
     .nav-links { display: none; }
     .nav-hamburger { display: flex; }
@@ -1239,7 +1239,7 @@
     *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
   }
 
-  /* stop the fixed nav covering headings when jumping to an anchor */
+  
   section[id] { scroll-margin-top: 80px; }
 </style>
 </head>
@@ -1691,26 +1691,12 @@
       <h3>Get your free quote</h3>
       <p>Tell us a bit about your surfaces and we'll come back to you with a quote. Photos help us give you an accurate price without a site visit.</p>
 
-      <!-- ================================================================
-           FORM DELIVERY — FormSubmit (free, accepts photo attachments)
-
-           Submissions email straight to the address in the action= URL
-           below. No account needed. The FIRST time this form is submitted
-           you'll get a confirmation email from FormSubmit — click the link
-           in it to activate, or nothing will arrive after that.
-
-           After activating, FormSubmit gives you a random alias string.
-           Swap it in for the email address to keep the address out of the
-           page source, e.g.  action="https://formsubmit.co/a1b2c3d4e5..."
-
-           LIMIT: 10MB total across all attached photos. Phone photos run
-           3-5MB each, so that's roughly 2-3 images per submission.
-           ================================================================ -->
+      
       <form class="quote-form" action="https://formsubmit.co/info@unmarkd.com.au" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="_subject" value="New quote request — UN-MARKD website">
         <input type="hidden" name="_template" value="table">
         <input type="hidden" name="_captcha" value="false">
-        <!-- honeypot: bots fill this in, humans never see it -->
+        
         <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
 
         <div class="qf-row">
@@ -1830,13 +1816,12 @@
       setMenu(!nav.classList.contains('nav-open'));
     });
 
-    // Close the menu after tapping a link, otherwise the fixed panel
-    // stays over the page and it looks like nothing happened.
+    
     document.querySelectorAll('#nav-links a').forEach(function (link) {
       link.addEventListener('click', function () { setMenu(false); });
     });
 
-    // Tap outside the menu, or press Escape, to close it.
+    
     document.addEventListener('click', function (e) {
       if (nav.classList.contains('nav-open') && !nav.contains(e.target)) setMenu(false);
     });
@@ -1844,7 +1829,7 @@
       if (e.key === 'Escape') setMenu(false);
     });
 
-    // Shrink the header once the visitor starts scrolling.
+    
     var SHRINK_AT = 40;
     function syncNav() {
       nav.classList.toggle('nav-shrunk', window.scrollY > SHRINK_AT);
@@ -1852,8 +1837,7 @@
     syncNav();
     window.addEventListener('scroll', syncNav, { passive: true });
 
-    // Show how many photos the visitor picked, so the upload control
-    // doesn't look like nothing happened after choosing files.
+    
     var photos = document.getElementById('qf-photos');
     var photoLabel = document.getElementById('qf-file-label');
     if (photos && photoLabel) {
@@ -1865,7 +1849,7 @@
       });
     }
 
-    // Reset state if the window is widened back to desktop.
+    
     window.addEventListener('resize', function () {
       if (window.innerWidth > 1090) setMenu(false);
     });
